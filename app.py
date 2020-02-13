@@ -26,8 +26,7 @@ manager.add_command('db', MigrateCommand)
 
 @manager.command
 def execute_model():
-    #consumer = service.Consumer("processed-data")
-    consumer = service.Consumer("retrieve-session")
+    consumer = service.Consumer("processed-data")
     consKafka = consumer.get_consumer()
     count = 154
     while True :
@@ -35,8 +34,7 @@ def execute_model():
         for tp, messages in msg_pack.items():
             for msg in messages:
                 user_obj = msg.value
-                job = jsons.load(user_obj, Job)
-                user = User("Naga"+str(count),"Data retrieval",'2019/06/26/KVWX/KVWX20190626_221105_V06')
+                user = jsons.load(user_obj, User)
                 count += 1
                 consumer.execute_model(user.station, user, db)
 
