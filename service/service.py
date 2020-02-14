@@ -63,7 +63,7 @@ class Consumer():
                 print('Exception in publishing status')
                 print(str(ex))
 
-    def execute_model(self,prefix,user,db):
+    def execute_model(self,prefix,message,db):
 
         s3 = boto3.resource('s3', config=Config(signature_version=botocore.UNSIGNED,
                                                 user_agent_extra='Resource'))
@@ -135,9 +135,10 @@ class Consumer():
 
         producer = self.get_producer()
         #status = self.publish_message(producer,"model",prefix,user)
-        job = Job("process",user.name,"Model Executed",user.station)
-        self.publish_status(producer,"model-session",user.name,job)
-        user.job = "Model Execution"
+        job = Job("model",message.user,"Model Executed",message.station)
+        self.publish_status(producer,"model-session",message.user,job)
+        message.job = "Model Execution"
+        user = User(message.user, message.job, message.station)
         db.session.add(user)
         db.session.commit()
         user_record= User.query.filter_by(name=user.name).first()

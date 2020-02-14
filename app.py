@@ -5,6 +5,7 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
 from model.job import Job
+from model.message import Message
 from model.user import db, User
 from service import service
 from flask import request
@@ -30,13 +31,13 @@ def execute_model():
     consKafka = consumer.get_consumer()
     count = 154
     while True :
-        msg_pack = consKafka.poll(timeout_ms=500)
+        msg_pack = consKafka.poll()
         for tp, messages in msg_pack.items():
             for msg in messages:
                 user_obj = msg.value
-                user = jsons.load(user_obj, User)
+                message = jsons.load(user_obj, Message)
                 count += 1
-                consumer.execute_model(user.station, user, db)
+                consumer.execute_model(message.station, message, db)
 
 
 if __name__ == '__main__':
