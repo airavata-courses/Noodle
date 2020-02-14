@@ -5,6 +5,7 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
 from model.job import Job
+from model.message import Message
 from model.user import db, User
 from service import service
 import jsons
@@ -26,15 +27,15 @@ def retrieve_data():
     consKafka = consumer.get_consumer()
 
     while True:
-        msg_pack = consKafka.poll(timeout_ms=500)
+        msg_pack = consKafka.poll()
         for tp, messages in msg_pack.items():
             for msg in messages:
                 user_job = msg.value
-                user = jsons.load(user_job, User)
-                prod = service.Producer(user.station)
+                message = jsons.load(user_job, Message)
+                prod = service.Producer(message.station)
                 kafka_prod = prod.connect_kafka_producer()
-                #user = User("Naga711","Data retrieval",'2019/06/26/KVWX/KVWX20190626_221105_V06')
-                prod.retrieve_data(kafka_prod,user,db)
+
+                prod.retrieve_data(kafka_prod,message,db)
 
 
 if __name__ == "__main__":

@@ -18,7 +18,7 @@ class Consumer():
         self.topic = topic
 
     def get_consumer(self):
-        consumer = KafkaConsumer(self.topic, auto_offset_reset='earliest',
+        consumer = KafkaConsumer(self.topic, auto_offset_reset='latest',
                              bootstrap_servers=['127.0.0.1:9092'], value_deserializer=lambda m: json.loads(m.decode('utf-8')),
                                  api_version=(0, 10), consumer_timeout_ms=10000)
         return consumer
@@ -52,19 +52,20 @@ class Producer():
             print(str(ex))
 
 
-    def retrieve_data(self,producer_instance,user,db):
+    def retrieve_data(self,producer_instance,message,db):
         s3 = boto3.resource('s3', config=Config(signature_version=botocore.UNSIGNED,
                                                 user_agent_extra='Resource'))
         bucket = s3.Bucket('noaa-nexrad-level2')
         key =""
-        for obj in bucket.objects.filter(Prefix=user.station):
+        for obj in bucket.objects.filter(Prefix=message.station):
             key = obj.key
             # Use MetPy to read the file
             f = Level2File(obj.get()['Body'])
-            status = self.publish_rawdata(producer_instance,"retrieved-data",user.station,user)
-            job = Job("retrieve",user.name,status,user.station)
+            status = self.publish_rawdata(producer_instance,"retrieved-data",message.station,message)
+            job = Job("retrieve",message.user,status,message.station)
             self.publish_status(producer_instance,"retrieve-session",job.user,job)
         #user = User(user["name"], "Data Retrieveal",user["station"])
+        user = User(message.user, message.job, message.station)
         db.session.add(user)
         db.session.commit()
 
