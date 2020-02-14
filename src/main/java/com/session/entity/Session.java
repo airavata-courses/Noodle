@@ -9,6 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
+@Table(name = "session")
 public class Session {
 	
 	@Id
