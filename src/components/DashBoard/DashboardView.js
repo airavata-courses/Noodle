@@ -1,41 +1,114 @@
 import React, { useState } from "react";
 import { Row, Button } from "antd";
-
+ 
 import routes from "../../routes";
 import { read_cookie} from 'sfcookies';
-
+import { bake_cookie} from 'sfcookies';
+import axios from "axios";
 const DashboardView = props => {
+  const [url, setUrl] = useState("");
   const goToSettingsPage = (e) => {
-
+ 
     e.preventDefault();
-    console.log(Date);
-    props.history.push(routes.settings);
+    
+    console.log(Date);           
+    //console.log(this.state);    
+    //console.log('Received values of form: ', values);
+    
+    //cookie.set(email);
+    //cookie = "email" + email ;
+    //var url = "";
+    if (Date === 1)
+    {
+      url = "2019/06/26/KVWX/KVWX20190626_221105_V06";
+
+    }
+    
+    //cookies.set()
+    axios.post('http://localhost:5050/task',{
+          user: user,
+          station:"2019/06/26/KVWX/KVWX20190626_221105_V06"})
+            .then( (response)=> {
+                // handle success
+                if(response.data )
+                {
+                  alert("Success Login");
+                  props.history.push(routes.settings);
+                }                
+                console.log(response);
+                //this.setState({prediction:response.data})
+ 
+            },(error) =>{
+              console.log(error);
+            });   
+ 
+    
   };
-
+ 
   const goToStatsPage = (e) => {
-
+ 
     e.preventDefault();
     console.log(Date);
     props.history.push(routes.statistics);
   };
+ 
+  var user = '';
+ 
+  user = read_cookie('email_name');
+ 
+  var station = '';
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();    
+  //   localStorage.setItem("token", "I am now logged in");
+  //   //console.log(this.state);    
+  //   //console.log('Received values of form: ', values);
+    
+  //   //cookie.set(email);
+  //   //cookie = "email" + email ;
+  //   if (Date === 1)
+  //   {
+  //     url = "2019/06/26/KVWX/KVWX20190626_221105_V06";
 
+  //   }
 
+    
+  //   //cookies.set()
+  //   axios.post('http://localhost:5000/api/auth',{
+  //         user: user,
+  //         station:"abc"})
+  //           .then( (response)=> {
+  //               // handle success
+  //               if(response.data !== "Invalid credentials!")
+  //               {
+  //                 alert("Success Login");
+  //                 props.history.push(routes.dashboard);
+  //               }                
+  //               console.log(response);
+  //               //this.setState({prediction:response.data})
+ 
+  //           },(error) =>{
+  //             console.log(error);
+  //           });        
+  // };
+ 
+ 
   const [Date,setDate] = useState('react');
-
+ 
   function handleChange(e){
     setDate(e.target.value);
- };
-  
-
- function handleSubmit(e){
-  e.preventDefault();
-  console.log(Date);
 };
   
-
-  var email = '';
-
-  email = read_cookie('email_name');
+ 
+//  function handleSubmit(e){
+//   e.preventDefault();
+//   console.log(Date);
+// };
+  
+ 
+ 
+ 
+  //var url = ["1","2","3","4"]
+ 
   
   return (
     <form >
@@ -50,7 +123,7 @@ const DashboardView = props => {
         
       <center>
       <h2>
-      Welcome  {email}
+      Welcome  {user}
       </h2>
       <br></br>
       </center>
@@ -58,40 +131,15 @@ const DashboardView = props => {
     </div>
     <div>
     <p>    
-        Date   <select onChange={handleChange} value={Date}>
-          <option value="1991">1991</option>
-          <option value="1992">1992</option>
-          <option value="1993">1993</option>
-        </select>
+        Search   <select onChange={handleChange} value={Date}>
+          <option value="1">Address 1</option>
+          <option value="2">Address 2</option>
+          <option value="3">Address 3</option>
+       </select>
         </p>
-        </div>
-        <div>
-    <p>    
-        Month   <select onChange={handleChange} value={Date}>
-          <option value="1991">1991</option>
-          <option value="1992">1992</option>
-          <option value="1993">1993</option>
-        </select>
-        </p>
-        </div>
-        <div>
-    <p>    
-        Day   <select onChange={handleChange} value={Date}>
-          <option value="1991">1991</option>
-          <option value="1992">1992</option>
-          <option value="1993">1993</option>
-        </select>
-        </p>
-        </div>
-        <div>
-    <p>    
-        Month   <select onChange={handleChange} value={Date}>
-          <option value="1991">1991</option>
-          <option value="1992">1992</option>
-          <option value="1993">1993</option>
-        </select>
-        </p>
-        </div>
+        </div>      
+        
+        
         <div>
         <button onClick={goToSettingsPage} type="submit">Run Command</button>
         </div>
@@ -104,9 +152,10 @@ const DashboardView = props => {
       </form>
     
     
-
+ 
     
   );
 };
-
+ 
 export default DashboardView;
+
