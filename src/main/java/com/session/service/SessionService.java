@@ -24,7 +24,7 @@ public class SessionService {
 	private KafkaTemplate<String, String> kafkaTemplate;
 	
 
-	 @KafkaListener(topics = { "retrieve-session","model-session"} ,groupId = "session")
+	 @KafkaListener(topics = { "retrieve-session","model-session","process-session"} ,groupId = "session")
 	    public void listen(String message) {
 		 JSONObject json = new JSONObject();
 		 System.out.println("Received Message: " + message);
@@ -60,7 +60,7 @@ public class SessionService {
 	 		
 	 		JSONObject json = new JSONObject();
 	 		json.put("job", session.getJob());
-	 		json.put("user", session.getUsername());
+	 		json.put("username", session.getUsername());
 	 		json.put("status", session.getStatus());
 	 		json.put("station", session.getStation());
 	 		
