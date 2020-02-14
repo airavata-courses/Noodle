@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
+from model.message import Message
 from model.user import db, User
 from service import service
 from flask import request
@@ -25,12 +26,12 @@ def process_data():
     consumer = service.Consumer("retrieved-data")
     consKafka = consumer.get_consumer()
     while True :
-        msg_pack = consKafka.poll(timeout_ms=500)
+        msg_pack = consKafka.poll()
         for tp, messages in msg_pack.items():
             for msg in messages:
-                user_obj = msg.value
-                user = jsons.load(user_obj, User)
-                consumer.process_data(user.station, user, db)
+                msg_obj = msg.value
+                message = jsons.load(msg_obj, Message)
+                consumer.process_data(message.station, message, db)
 
 
 if __name__ == '__main__':
