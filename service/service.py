@@ -54,7 +54,7 @@ class Consumer():
                 print('Exception in publishing status')
                 print(str(ex))
 
-    def process_data(self,prefix,user,db):
+    def process_data(self,prefix,message,db):
 
         s3 = boto3.resource('s3', config=Config(signature_version=botocore.UNSIGNED,
                                                 user_agent_extra='Resource'))
@@ -85,10 +85,11 @@ class Consumer():
             zdr = np.array([ray[4][b'ZDR'][1] for ray in f.sweeps[sweep]])
 
         producer = self.get_producer()
-        status = self.publish_message(producer,"processed-data",prefix,user)
-        job = Job("process", user.name, status, user.station)
-        self.publish_status(producer,"process-session",user.name,job)
-        user.job = 'Data Processing'
+        status = self.publish_message(producer,"processed-data",prefix,message)
+        job = Job("process", message.user, status, message.station)
+        self.publish_status(producer,"process-session",message.user,job)
+        message.job = 'Data Processing'
+        user = User(message.user,message.job,message.station)
         db.session.add(user)
         db.session.commit()
 

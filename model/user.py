@@ -4,7 +4,7 @@ db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(80), unique=True)
+    name = db.Column(db.String(80))
     job = db.Column(db.String(255))
     station = db.Column(db.String(255))
 
