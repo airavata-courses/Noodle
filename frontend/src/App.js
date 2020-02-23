@@ -6,6 +6,7 @@ import PublicLayout from "./shared/layout/PublicLayout";
 import AuthLayout from "./shared/layout/AuthLayout";
 import LoginPage from "./components/login";
 import DashboardPage from "./components/DashBoard";
+import RegisterPage from "./components/register";
 
 const pages = [  
   {
@@ -14,6 +15,13 @@ const pages = [
     component: LoginPage,
     layout: PublicLayout
   },  
+  {
+    exact: true,
+    path: routes.register,
+    component: RegisterPage,
+    layout: PublicLayout
+
+  },
   {
     exact: false,
     path: routes.dashboard,
