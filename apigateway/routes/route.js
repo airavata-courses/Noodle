@@ -24,9 +24,10 @@ module.exports = function(app) {
     app.get("/session",function( req,res){
 
         msg = req.body
-        id = msg['username']
+        id = req.query.username
+        console.log(req.query.username);
        
-        axios.get('http://localhost:5010/session-data'+ id).then(function(response) {
+        axios.get('http://localhost:5010/session-data?username='+ id).then(function(response) {
                 console.log(response.data);
                 res.send(response.data);
               });
