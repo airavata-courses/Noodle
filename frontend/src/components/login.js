@@ -14,6 +14,11 @@ const LoginPage = props => {
   const cookie_key = 'email_name'; 
 
 
+  const goToRegisterPage = (e) => {
+
+    e.preventDefault();    
+    props.history.push(routes.register);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();    
     localStorage.setItem("token", "I am now logged in");
@@ -87,7 +92,16 @@ const LoginPage = props => {
           <Button block size="large" htmlType="submit">
             Login
           </Button>
+          <div>
+              <p>
+                <p></p>
+              </p>
+          </div>
+         
         </Form>
+        <div>
+        <Button block size="large" onClick={goToRegisterPage} >Register</Button>
+        </div>
       </Card>
     </>
   );
