@@ -1,40 +1,59 @@
-import React from "react";
+import React, {useEffect, useState } from "react";
 import { Button } from "antd";
+import { read_cookie} from 'sfcookies';
+import { bake_cookie} from 'sfcookies';
+import axios from "axios";
+import routes from "../../routes";
+import useAxios from 'axios-hooks'
 
-import data from "../../data.json"; 
+var user = '';
+ 
+user = read_cookie('email_name');
+
+
+  
+
+
 const SettingsView = props => {
+
+
   const goBack = () => {
     props.history.goBack();
   };
-  
- // const socialMediaList = data.SocialMedias;
 
-return (
-  <div>
-      {
-        data.Skills.map((skill) => {
-          return (
-            <div>
-              <h4>{skill.Area}</h4>
-              <ul>
-                {
-                  skill.SkillSet.map((skillDetail) => {
-                    return (
-                        <li>
-                          {skillDetail.Name}
-                        </li>
-                    );
-                  })
-                }
-              </ul>
-            </div>
-          );
-        })
-      } 
+  const [{ data, loading, error }, refetch] = useAxios(
+    'http://localhost:5050/session-message',
+    {username: user}
+  )
+  
  
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error!</p>
+
+  return (
+    <div>
+      <p>
+        <p>
+          <p>
+
+          </p>
+        </p>
+      </p>
+      <center>
+      <Button onClick={refetch}>refetch</Button>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+      </center>
+
+      <center>
  <Button onClick={goBack}>Go back</Button>
-  </div>
-);
+ </center>
+    </div>
+  )
 };
 
+
+
+
+
 export default SettingsView;
+
