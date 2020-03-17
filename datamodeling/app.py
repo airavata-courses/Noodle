@@ -16,7 +16,7 @@ from flask import json
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:idontknow.3@localhost:5432/modeldb'
+#app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:idontknow.3@localhost:5432/modeldb'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 db.init_app(app)
 db.app = app

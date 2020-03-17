@@ -1,0 +1,9 @@
+flask
+flask_script
+flask_migrate
+flask_sqlalchemy
+jsons
+kafka-python
+boto3
+metpy
+psycopg2-binary
