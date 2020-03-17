@@ -1,9 +1,6 @@
-import React, {useEffect, useState } from "react";
+import React from "react";
 import { Button } from "antd";
 import { read_cookie} from 'sfcookies';
-import { bake_cookie} from 'sfcookies';
-import axios from "axios";
-import routes from "../../routes";
 import useAxios from 'axios-hooks'
 
 var user = '';

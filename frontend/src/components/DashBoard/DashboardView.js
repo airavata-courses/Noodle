@@ -1,25 +1,25 @@
 import React, { useState } from "react";
-import { Row, Button } from "antd";
+import { Row} from "antd";
  
 import routes from "../../routes";
 import { read_cookie} from 'sfcookies';
-import { bake_cookie} from 'sfcookies';
+// import { bake_cookie} from 'sfcookies';
 import axios from "axios";
 const DashboardView = props => {
-  const [url, setUrl] = useState("");
+  // const [url, setUrl] = useState("");
   var fetchedUrl = ""
+  var user = '';
   const goToSettingsPage = (e) => {
  
     e.preventDefault();
     
-    
     console.log(Date);         
     
-    if (Date === 1)
-    {
-      url = "2019/06/26/KVWX/KVWX20190626_221105_V06";
+    // if (Date === 1)
+    // {
+    //   url = "2019/06/26/KVWX/KVWX20190626_221105_V06";
 
-    }
+    // }
     
     //cookies.set()
     axios.post('http://localhost:5050/task',{
@@ -48,7 +48,7 @@ const DashboardView = props => {
     username: user
     
   };
-  var my_user = ''
+  // var my_user = ''
   
   const goToStatsPage = (e) => {
  
@@ -73,11 +73,11 @@ const DashboardView = props => {
     // props.history.push(routes.statistics);
   };
  
-  var user = '';
+  // var user = '';
  
   user = read_cookie('email_name');
  
-  var station = '';
+  // var station = '';
   // const handleSubmit = (event) => {
   //   event.preventDefault();    
   //   localStorage.setItem("token", "I am now logged in");
@@ -120,10 +120,7 @@ const DashboardView = props => {
 };
   
  
-//  function handleSubmit(e){
-//   e.preventDefault();
-//   console.log(Date);
-// };
+
   
  
  

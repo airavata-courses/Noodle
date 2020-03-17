@@ -1,0 +1,172 @@
+version: '3.7'
+services:
+  mdb:
+    container_name: mdb
+    restart: always
+    image: postgres:12
+    environment:
+      - POSTGRES_USER=${USER}
+      - POSTGRES_PASSWORD=${PASSWORD}
+      - POSTGRES_DB=${MDB}
+    volumes:
+      - ads-data:/var/lib/postgressql/data
+    ports:
+      - "5435:5432"
+    networks:
+      - dis_network
+  smdb:
+    container_name: smdb
+    restart: always
+    image: postgres:12
+    environment:
+      - POSTGRES_USER=${USER}
+      - POSTGRES_PASSWORD=${PASSWORD}
+      - POSTGRES_DB=${SMDB}
+    volumes:
+      - ads-data:/var/lib/postgressql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - dis_network
+   
+  pdb:
+    container_name: pdb
+    restart: always
+    image: postgres:12
+    environment:
+      - POSTGRES_USER=${USER}
+      - POSTGRES_PASSWORD=${PASSWORD}
+      - POSTGRES_DB=${PDB}
+    volumes:
+      - ads-data:/var/lib/postgressql/data
+    ports:
+      - "5434:5432"
+    networks:
+      - dis_network
+
+  rdb:
+    container_name: rdb
+    restart: always
+    image: postgres:12
+    environment:
+      - POSTGRES_USER=${USER}
+      - POSTGRES_PASSWORD=${PASSWORD}
+      - POSTGRES_DB=${RDB}
+    volumes:
+      - ads-data:/var/lib/postgressql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - dis_network
+
+  model-image:
+    container_name: model-image
+    build: ./datamodeling
+    environment:
+      - FLASK_ENV=docker 
+      - SQLALCHEMY_DATABASE_URI=postgresql://postgres:idontknow.3@mdb/modeldb
+    ports:
+      - 5003:5001
+    volumes:
+      - .docker/model-image:/model-image
+    depends_on:
+      - mdb
+      - kafka 
+    command: sh -c "ls && python app.py db init && python app.py db migrate && python app.py db upgrade && python app.py execute_model"
+    networks:
+      - dis_network
+
+  process-image:
+    container_name: process-image
+    build: ./dataprocessing
+    environment:
+      - FLASK_ENV=docker 
+      - SQLALCHEMY_DATABASE_URI=postgresql://postgres:idontknow.3@pdb/processdb
+    ports:
+      - 5002:5001
+    volumes:
+      - .docker/process-image:/process-image
+    depends_on:
+      - pdb
+      - kafka
+    command: sh -c "python app.py db init && python app.py db migrate && python app.py db upgrade && python app.py process_data"
+    networks:
+      - dis_network
+ 
+  retrieve-image:
+    container_name: retrieve-image
+    build: ./dataretrieval
+    environment:
+      - FLASK_ENV=docker 
+      - SQLALCHEMY_DATABASE_URI=postgresql://postgres:idontknow.3@rdb/retrievedb
+    ports:
+      - 5001:5001
+    volumes:
+      - .docker/retrieve-image:/retrieve-image
+    depends_on:
+      - rdb
+      - kafka
+    command: sh -c " python app.py db init && python app.py db migrate && python app.py db upgrade && python app.py retrieve_data"
+    networks:
+      - dis_network
+
+  session-image:
+    container_name: session-image
+    build: ./sessionmanagement
+    ports:
+      - 5004:5010
+    volumes:
+      - .docker/session-image:/session-image
+    depends_on:
+      - smdb
+      - kafka 
+    command: sh -c "java -jar target/session-management-0.0.1-SNAPSHOT.jar"
+    networks:
+      - dis_network
+
+  fronted-image:
+    container_name: frontend-image
+    build: ./frontend
+    ports:
+     - "5006:3000"
+    volumes:
+     - .docker/frontend-image:/frontend-image
+    networks:
+     - dis_network 
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    hostname: zookeeper
+    networks: 
+      - dis_network
+
+  kafka:
+    image: wurstmeister/kafka
+    command: [start-kafka.sh]
+    ports:
+      - "9092:9092"
+    hostname: kafka
+    networks:   
+      - dis_network
+    environment:
+      KAFKA_CREATE_TOPICS: "processed-data:1:1,retrieved-data:1:1,data-retrieve:1:1,process-session:1:1,retrieve-session:1:1,model-session:1:1,current-status:1:1" 
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_PORT: 9092
+    volumes:
+      - .docker/kafka-image:/kafka
+    depends_on:
+      - zookeeper
+  
+volumes:
+    ads-data:
+   
+networks:
+    dis_network:
+
+
+
+
+
