@@ -28,9 +28,9 @@ spec:
     spec:
       containers:
       - name: apigateway
-        image: nayeemullahbaig/noodle.apigateway:latest
+        image: nayeemullahbaig/noodle/apigateway-image:latest
         - containerPort: 5050
         env:
           - name : KAFKA_SERVER
-            value : kafka:9092
+            value : kafka-service:9092
         

@@ -28,6 +28,6 @@ spec:
       containers:
       - name: usermanagement
         imagePullPolicy: Always
-        image: nayeemullahbaig/noodle.usermanagement:latest
+        image: nayeemullahbaig/noodle/user-image:latest
         ports:
         - containerPort: 5000
