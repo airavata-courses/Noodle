@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pdb
+spec:
+  ports:
+  - protocol: TCP
+    port: 5434
+    targetPort: 5434
+  selector:
+    app: pdb
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pdb-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pdb
+  template:
+    metadata:
+      labels:
+        app: pdb
+    spec:
+      containers:
+      - name: pdb
+        image: postgres:12
+        ports:
+        - containerPort: 5434
+        env:
+        - POSTGRES_DB: processdb
+        - POSTGRES_USER: postgres
+        - POSTGRES_PASSWORD: idontknow.3
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-process-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-process
+  template:
+    metadata:
+      labels:
+        app: data-process
+    spec:
+      containers:
+      - name: process-image
+        image: noodle/process-image
+        env:
+          - name : SQLALCHEMY_DATABASE_URI
+            value :postgresql://postgres:idontknow.3@pdb/processdb
+
