@@ -60,6 +60,7 @@ services:
       - dis_network
 
   model-image:
+    image: noodle/model-image
     container_name: model-image
     build: ./datamodeling
     environment:
@@ -72,11 +73,11 @@ services:
     depends_on:
       - mdb
       - kafka 
-    command: sh -c "ls && python app.py db init && python app.py db migrate && python app.py db upgrade && python app.py execute_model"
     networks:
       - dis_network
 
   process-image:
+    image: noodle/process-image
     container_name: process-image
     build: ./dataprocessing
     environment:
@@ -89,11 +90,11 @@ services:
     depends_on:
       - pdb
       - kafka
-    command: sh -c "python app.py db init && python app.py db migrate && python app.py db upgrade && python app.py process_data"
     networks:
       - dis_network
  
   retrieve-image:
+    image: noodle/retrieve-image
     container_name: retrieve-image
     build: ./dataretrieval
     environment:
@@ -106,25 +107,25 @@ services:
     depends_on:
       - rdb
       - kafka
-    command: sh -c " python app.py db init && python app.py db migrate && python app.py db upgrade && python app.py retrieve_data"
     networks:
       - dis_network
 
   session-image:
+    image: noodle/session-image
     container_name: session-image
     build: ./sessionmanagement
     ports:
-      - 5004:5010
+      - 5010:5010
     volumes:
       - .docker/session-image:/session-image
     depends_on:
       - smdb
       - kafka 
-    command: sh -c "java -jar target/session-management-0.0.1-SNAPSHOT.jar"
     networks:
       - dis_network
 
   fronted-image:
+    image: noodle/frontend-image
     container_name: frontend-image
     build: ./frontend
     ports:
@@ -159,6 +160,46 @@ services:
       - .docker/kafka-image:/kafka
     depends_on:
       - zookeeper
+    
+  user-image:
+    image: noodle/user-image
+    container_name: user-image
+    build: ./usermanagement
+    ports:
+     - "5007:5000"
+    volumes:
+     - .docker/user-image:/user-image
+    depends_on:
+     - udb
+    networks:
+     - dis_network 
+  
+  apigateway-image:
+    image: noodle/apigateway-image
+    container_name: apigateway-image
+    build: ./apigateway
+    ports:
+     - "5050:5050"
+    volumes:
+     - .docker/user-image:/user-image
+    depends_on:
+     - kafka
+     - zookeeper
+     - session-image
+     - retrieve-image
+     - process-image
+    networks:
+     - dis_network 
+  
+  udb:
+    container_name: udb
+    image: mongo
+    expose:
+      - 27017
+    volumes:
+      - ./mongo-volume:/data/db
+    networks: 
+      - dis_network
   
 volumes:
     ads-data:

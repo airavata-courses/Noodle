@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: smdb
+spec:
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
+  selector:
+    app: smdb
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: session-service
+spec:
+  ports:
+  - protocol: TCP
+    port: 5010
+    targetPort: 5010
+  selector:
+    app: session-man
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smdb-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smdb
+  template:
+    metadata:
+      labels:
+        app: smdb
+    spec:
+      containers:
+      - name: smdb
+        image: postgres:12
+        ports:
+        - containerPort: 5434
+        env:
+        - POSTGRES_DB: sessiondb
+        - POSTGRES_USER: postgres
+        - POSTGRES_PASSWORD: idontknow.3
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: session-man-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: session-man
+  template:
+    metadata:
+      labels:
+        app: session-man
+    spec:
+      containers:
+      - name: session-image
+        image: noodle/session-image
+        ports:
+        - containerPort: 5010
+       
+
