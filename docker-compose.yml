@@ -60,7 +60,7 @@ services:
       - dis_network
 
   model-image:
-    image: nayeemullahbaig/model-image
+    image: noodle/model-image
     container_name: model-image
     build: ./datamodeling
     environment:
@@ -77,7 +77,7 @@ services:
       - dis_network
 
   process-image:
-    image: nayeemullahbaig/process-image
+    image: noodle/process-image
     container_name: process-image
     build: ./dataprocessing
     environment:
@@ -94,7 +94,7 @@ services:
       - dis_network
  
   retrieve-image:
-    image: nayeemullahbaig/retrieve-image
+    image: noodle/retrieve-image
     container_name: retrieve-image
     build: ./dataretrieval
     environment:
@@ -111,7 +111,7 @@ services:
       - dis_network
 
   session-image:
-    image: nayeemullahbaig/session-image
+    image: noodle/session-image
     container_name: session-image
     build: ./sessionmanagement
     ports:
@@ -125,7 +125,7 @@ services:
       - dis_network
 
   fronted-image:
-    image: nayeemullahbaig/frontend-image
+    image: noodle/frontend-image
     container_name: frontend-image
     build: ./frontend
     ports:
@@ -162,7 +162,7 @@ services:
       - zookeeper
     
   user-image:
-    image: nayeemullahbaig/user-image
+    image: noodle/user-image
     container_name: user-image
     build: ./usermanagement
     ports:
@@ -175,7 +175,7 @@ services:
      - dis_network 
   
   apigateway-image:
-    image: nayeemullahbaig/apigateway-image
+    image: noodle/apigateway-image
     container_name: apigateway-image
     build: ./apigateway
     ports:
@@ -201,6 +201,7 @@ services:
     networks: 
       - dis_network
   
+
 volumes:
     ads-data:
    
