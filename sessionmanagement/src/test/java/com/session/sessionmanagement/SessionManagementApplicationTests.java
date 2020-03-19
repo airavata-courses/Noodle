@@ -37,7 +37,7 @@ void contextLoads() {
    logger.info("Test case for session management service started .....");
    Assert.assertEquals(new String("kafka-service:9092"),kafka);
    Assert.assertEquals(new String("zookeeper:2181"),zookeeper);
-   Assert.assertEquals(new String("jdbc:postgresql://smdb/sessiondb"),dburl);
+   Assert.assertEquals(new String("jdbc:postgresql://smdb-service:5436/sessiondb"),dburl);
    Assert.assertEquals(new String("postgres"),username);
    Assert.assertEquals(new String("idontknow.3"),password);
    logger.info("Test case for session management service completed .....");
