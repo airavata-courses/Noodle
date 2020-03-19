@@ -67,7 +67,7 @@ spec:
     spec:
       containers:
       - name: session-image
-        image: noodle/session-image
+        image: nayeemullahbaig/session-image
         ports:
         - containerPort: 5010
        
