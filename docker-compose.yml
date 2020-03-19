@@ -181,7 +181,7 @@ services:
     ports:
      - "5050:5050"
     volumes:
-     - .docker/user-image:/user-image
+     - .docker/apigateway-image:/user-image
     depends_on:
      - kafka
      - zookeeper
