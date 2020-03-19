@@ -29,6 +29,7 @@ spec:
       containers:
       - name: apigateway
         image: nayeemullahbaig/apigateway-image
+        imagePullPolicy: Always
         ports:
         - containerPort: 5050
         env:
