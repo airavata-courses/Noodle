@@ -56,8 +56,8 @@ spec:
         app: data-retrieval
     spec:
       containers:
-      - name: retrieval-image
-        image: nayeemullahbaig/retrieval-image
+      - name: retrieve-image
+        image: nayeemullahbaig/retrieve-image
         env:
           - name: SQLALCHEMY_DATABASE_URI
             value: postgresql://postgres:idontknow.3@rdb/retrievedb

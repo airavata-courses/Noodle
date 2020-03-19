@@ -10,5 +10,4 @@ WORKDIR /apigate
 
 RUN  npm install
 EXPOSE 5050
-
 CMD [ "node","server.js"]

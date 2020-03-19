@@ -3,7 +3,6 @@ FROM node:12
 
 #set working directory 
 RUN mkdir userman
-
 #Copy files to docker
 COPY . /userman
 WORKDIR /userman

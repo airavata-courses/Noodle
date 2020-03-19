@@ -7,7 +7,6 @@ RUN mkdir ui
 #Copy files to docker
 COPY . /ui
 WORKDIR /ui
-
 RUN  npm install
 EXPOSE 3000
 
