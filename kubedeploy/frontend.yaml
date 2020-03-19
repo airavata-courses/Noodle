@@ -31,3 +31,8 @@ spec:
         image: nayeemullahbaig/frontend-image
         ports:
         - containerPort: 3000
+        env:
+        - name: API_GATEWAY
+          value: apigateway-service:5050
+        - name: USER_SERVICE
+          value: user-service:5000

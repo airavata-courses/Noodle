@@ -29,7 +29,7 @@ const LoginPage = props => {
     //cookie = "email" + email ;
     bake_cookie(cookie_key,email);
     //cookies.set()
-    axios.post('user-service:5000/api/auth',{
+    axios.post(process.env.USER_SERVICE+'/api/auth',{
           email: email,
           password:password})
             .then( (response)=> {

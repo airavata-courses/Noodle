@@ -22,7 +22,7 @@ const DashboardView = props => {
     // }
     
     //cookies.set()
-    axios.post('apigateway-service:5050/task',{
+    axios.post(process.env.API_GATEWAY+'/task',{
           user: user,
           station:"2019/06/26/KVWX/KVWX20190626_221105_V06"})
             .then( (response)=> {
@@ -53,7 +53,7 @@ const DashboardView = props => {
   const goToStatsPage = (e) => {
  
     e.preventDefault();
-    axios.get('apigateway-service:5050/session?username='+user,{params      
+    axios.get(process.env.API_GATEWAY+'/session?username='+user,{params      
           })
             .then( (response)=> {
                 // handle success
