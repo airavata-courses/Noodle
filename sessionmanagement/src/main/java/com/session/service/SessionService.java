@@ -5,6 +5,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import com.session.app.SessionManagementApplication;
 import com.session.entity.Session;
 import com.session.repository.SessionRepository;
 
@@ -13,6 +14,8 @@ import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class SessionService {
@@ -23,9 +26,12 @@ public class SessionService {
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
 	
+	 private static final Logger logger = LoggerFactory.getLogger(SessionService.class);
+	
 
 	 @KafkaListener(topics = { "retrieve-session","model-session","process-session"} ,groupId = "session")
 	    public void listen(String message) {
+		 logger.info("Received Message: " + message);
 		 JSONObject json = new JSONObject();
 		 System.out.println("Received Message: " + message);
 		 try {
@@ -52,11 +58,14 @@ public class SessionService {
 			  produceMessage(session);
 			 
 		 }
+		 
+		 logger.info("Saved the message");
 	       
 	    }
 
 	 	@SuppressWarnings("unchecked")
 		public void produceMessage(Session session) {
+	 		 logger.info("Producing the  message ........");
 	 		
 	 		JSONObject json = new JSONObject();
 	 		json.put("job", session.getJob());
@@ -65,21 +74,27 @@ public class SessionService {
 	 		json.put("station", session.getStation());
 	 		
 	
-	 		kafkaTemplate.send("current-status", json.toJSONString());		
+	 		kafkaTemplate.send("current-status", json.toJSONString());
+	 		
+	 		 logger.info("Produced the message");
 	 		
 	 	}
 
 		public Session getSessionData(String userName) {
 			
+			 logger.info("Retrieveing the session data .....");
 			 List<Session> sessionList = sessionRepository.findByUsername(userName);
 			 Session session;
 			 if(sessionList.isEmpty()) {
 				 session = new Session("NA","NA","NA","NA");
 			
-				 
+				 logger.info("Could not find any session data , returning default record");
+
 			 }else {
 				 
 				 session = sessionList.get(0);
+				 logger.info("Retrieved the session data ");
+
 			 }
 			
 			return session;
