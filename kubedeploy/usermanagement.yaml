@@ -71,5 +71,5 @@ spec:
         ports:
         - containerPort: 5000
          env:
-        - name: mongoURI
-          value: mongodb://udb/ADS
+         - name: mongoURI
+           value: mongodb://udb/ADS
