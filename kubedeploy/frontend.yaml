@@ -6,8 +6,8 @@ spec:
   type: NodePort
   ports:
   - protocol: TCP
-    port: 5006
-    targetPort: 5006
+    port: 3000
+    targetPort: 3000
   selector:
     app: frontend
 ---
@@ -30,4 +30,4 @@ spec:
       - name: frontend-image
         image: nayeemullahbaig/frontend-image
         ports:
-        - containerPort: 5006
+        - containerPort: 3000
