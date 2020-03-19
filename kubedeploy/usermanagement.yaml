@@ -70,6 +70,6 @@ spec:
         image: nayeemullahbaig/user-image
         ports:
         - containerPort: 5000
-         env:
-         - name: mongoURI
-           value: mongodb://udb/ADS
+        env:
+        - name: mongoURI
+          value: mongodb://udb/ADS
