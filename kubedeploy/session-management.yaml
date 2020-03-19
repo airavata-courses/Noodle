@@ -74,3 +74,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5010
+        env:
+        - name: POSTGRES_HOST
+          value: smdb-service:5436
