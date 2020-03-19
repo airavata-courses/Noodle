@@ -60,7 +60,7 @@ services:
       - dis_network
 
   model-image:
-    image: model-image
+    image: nayeemullahbaig/model-image
     container_name: model-image
     build: ./datamodeling
     environment:
