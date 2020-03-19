@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rdb
+spec:
+  ports:
+  - protocol: TCP
+    port: 5433
+    targetPort: 5433
+  selector:
+    app: rdb
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rdb-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rdb
+  template:
+    metadata:
+      labels:
+        app: rdb
+    spec:
+      containers:
+      - name: rdb
+        image: postgres:12
+        ports:
+        - containerPort: 5433
+        env:
+        - POSTGRES_DB: retrievedb
+        - POSTGRES_USER: postgres
+        - POSTGRES_PASSWORD: idontknow.3
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-retrieval-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-retrieval
+  template:
+    metadata:
+      labels:
+        app: data-retrieval
+    spec:
+      containers:
+      - name: retrieval-image
+        image: noodle/retrieval-image
+        env:
+          - name : SQLALCHEMY_DATABASE_URI
+            value :postgresql://postgres:idontknow.3@rdb/retrievedb
+
