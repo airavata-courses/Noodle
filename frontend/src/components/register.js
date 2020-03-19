@@ -30,7 +30,7 @@ import "../App.css"
       //cookie = "email" + email ;
       bake_cookie(cookie_key,email);
       //cookies.set()
-      axios.post(process.env.USER_SERVICE+'api/user',{
+      axios.post('user-service:5000/api/user',{
             name: name,
             email: email,
             password:password})
