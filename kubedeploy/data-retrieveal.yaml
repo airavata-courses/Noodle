@@ -54,7 +54,7 @@ spec:
     spec:
       containers:
       - name: retrieval-image
-        image: noodle/retrieval-image
+        image: nayeemullahbaig/retrieval-image
         env:
           - name : SQLALCHEMY_DATABASE_URI
             value :postgresql://postgres:idontknow.3@rdb/retrievedb

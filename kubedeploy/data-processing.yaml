@@ -54,7 +54,7 @@ spec:
     spec:
       containers:
       - name: process-image
-        image: noodle/process-image
+        image: nayeemullahbaig/process-image
         env:
           - name : SQLALCHEMY_DATABASE_URI
             value :postgresql://postgres:idontknow.3@pdb/processdb

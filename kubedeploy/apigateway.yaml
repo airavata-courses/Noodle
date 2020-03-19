@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: apigateway
-        image: noodle/apigateway-image:latest
+        image: nayeemullahbaig/apigateway-image:latest
         - containerPort: 5050
         env:
           - name : KAFKA_SERVER

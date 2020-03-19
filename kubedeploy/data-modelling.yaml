@@ -54,7 +54,7 @@ spec:
     spec:
       containers:
       - name: model-image
-        image: noodle/model-image
+        image: nayeemullahbaig/model-image
         env:
           - name : SQLALCHEMY_DATABASE_URI
             value :postgresql://postgres:idontknow.3@mdb/modeldb
