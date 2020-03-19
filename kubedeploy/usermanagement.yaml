@@ -59,7 +59,7 @@ spec:
   selector:
     matchLabels:
       app: usermanagement
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
