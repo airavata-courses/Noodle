@@ -29,6 +29,5 @@ spec:
       containers:
       - name: frontend-image
         image: nayeemullahbaig/frontend-image
-	ports:
+        ports:
         - containerPort: 5006
-        
