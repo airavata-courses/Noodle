@@ -32,9 +32,12 @@ spec:
         ports:
         - containerPort: 5432
         env:
-        - POSTGRES_DB: modeldb
-        - POSTGRES_USER: postgres
-        - POSTGRES_PASSWORD: idontknow.3
+        - name: POSTGRES_DB
+          value: modeldb
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: idontknow.3
 
 ---
 
