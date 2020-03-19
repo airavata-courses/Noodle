@@ -34,5 +34,5 @@ spec:
         env:
         - name: API_GATEWAY
           value: apigateway-service:5050
-        - name: USER_SERVICE
+        - name: REACT_APP_USER_SERVICE
           value: user-service:5000
