@@ -27,6 +27,7 @@ spec:
         app: rdb
     spec:
       containers:
+      - name: rdb
         image: postgres:12
         ports:
         - containerPort: 5432
@@ -37,6 +38,7 @@ spec:
           value: postgres
         - name: POSTGRES_PASSWORD
           value: idontknow.3
+          
 ---
 
 apiVersion: apps/v1
