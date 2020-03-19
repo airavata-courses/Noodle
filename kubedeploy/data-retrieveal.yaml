@@ -27,15 +27,16 @@ spec:
         app: rdb
     spec:
       containers:
-      - name: rdb
         image: postgres:12
         ports:
         - containerPort: 5432
         env:
-        - POSTGRES_DB: retrievedb
-        - POSTGRES_USER: postgres
-        - POSTGRES_PASSWORD: idontknow.3
-
+        - name: POSTGRES_DB
+          value: retrievedb
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: idontknow.3
 ---
 
 apiVersion: apps/v1
