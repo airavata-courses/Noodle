@@ -6,7 +6,7 @@ spec:
   ports:
   - protocol: TCP
     port: 5433
-    targetPort: 5433
+    targetPort: 5432
   selector:
     app: rdb
 
@@ -30,7 +30,7 @@ spec:
       - name: rdb
         image: postgres:12
         ports:
-        - containerPort: 5433
+        - containerPort: 5432
         env:
         - POSTGRES_DB: retrievedb
         - POSTGRES_USER: postgres
@@ -56,6 +56,5 @@ spec:
       - name: retrieval-image
         image: nayeemullahbaig/retrieval-image
         env:
-          - name : SQLALCHEMY_DATABASE_URI
-            value :postgresql://postgres:idontknow.3@rdb/retrievedb
-
+          - name: SQLALCHEMY_DATABASE_URI
+            value: postgresql://postgres:idontknow.3@rdb/retrievedb

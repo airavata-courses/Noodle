@@ -6,7 +6,7 @@ spec:
   ports:
   - protocol: TCP
     port: 5434
-    targetPort: 5434
+    targetPort: 5432
   selector:
     app: pdb
 
@@ -30,7 +30,7 @@ spec:
       - name: pdb
         image: postgres:12
         ports:
-        - containerPort: 5434
+        - containerPort: 5432
         env:
         - POSTGRES_DB: processdb
         - POSTGRES_USER: postgres
@@ -56,6 +56,5 @@ spec:
       - name: process-image
         image: nayeemullahbaig/process-image
         env:
-          - name : SQLALCHEMY_DATABASE_URI
-            value :postgresql://postgres:idontknow.3@pdb/processdb
-
+          - name: SQLALCHEMY_DATABASE_URI
+            value: postgresql://postgres:idontknow.3@pdb/processdb

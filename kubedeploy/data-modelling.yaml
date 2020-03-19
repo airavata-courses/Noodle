@@ -6,7 +6,7 @@ spec:
   ports:
   - protocol: TCP
     port: 5435
-    targetPort: 5435
+    targetPort: 5432
   selector:
     app: mdb
 
@@ -30,7 +30,7 @@ spec:
       - name: mdb
         image: postgres:12
         ports:
-        - containerPort: 5434
+        - containerPort: 5432
         env:
         - POSTGRES_DB: modeldb
         - POSTGRES_USER: postgres
@@ -56,6 +56,5 @@ spec:
       - name: model-image
         image: nayeemullahbaig/model-image
         env:
-          - name : SQLALCHEMY_DATABASE_URI
-            value :postgresql://postgres:idontknow.3@mdb/modeldb
-
+          - name: SQLALCHEMY_DATABASE_URI
+            value: postgresql://postgres:idontknow.3@mdb/modeldb

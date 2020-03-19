@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: apigateway
+  name: apigateway-service
 spec:
   type: NodePort
   ports:
@@ -28,9 +28,9 @@ spec:
     spec:
       containers:
       - name: apigateway
-        image: nayeemullahbaig/apigateway-image:latest
+        image: nayeemullahbaig/apigateway-image
+        ports:
         - containerPort: 5050
         env:
-          - name : KAFKA_SERVER
-            value : kafka-service:9092
-        
+          - name: KAFKA_SERVER
+            value: kafka-service:9092

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: usermanagement
+  name: user-service
 spec:
  type: NodePort
  ports:
@@ -66,8 +66,8 @@ spec:
         app: usermanagement
     spec:
       containers:
-      - name: usermanagement
+      - name: user-image
         imagePullPolicy: Always
-        image: nayeemullahbaig/user-image:latest
+        image: nayeemullahbaig/user-image
         ports:
         - containerPort: 5000

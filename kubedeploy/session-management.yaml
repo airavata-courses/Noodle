@@ -5,7 +5,7 @@ metadata:
 spec:
   ports:
   - protocol: TCP
-    port: 5432
+    port: 5436
     targetPort: 5432
   selector:
     app: smdb
@@ -43,7 +43,7 @@ spec:
       - name: smdb
         image: postgres:12
         ports:
-        - containerPort: 5434
+        - containerPort: 5432
         env:
         - POSTGRES_DB: sessiondb
         - POSTGRES_USER: postgres
@@ -70,5 +70,3 @@ spec:
         image: nayeemullahbaig/session-image
         ports:
         - containerPort: 5010
-       
-

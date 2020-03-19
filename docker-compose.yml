@@ -166,7 +166,7 @@ services:
     container_name: user-image
     build: ./usermanagement
     ports:
-     - "5007:5000"
+     - "5000:5000"
     volumes:
      - .docker/user-image:/user-image
     depends_on:
@@ -207,8 +207,3 @@ volumes:
    
 networks:
     dis_network:
-
-
-
-
-
