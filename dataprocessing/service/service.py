@@ -18,14 +18,14 @@ class Consumer():
 
     def get_consumer(self):
         consumer = KafkaConsumer(self.topic, auto_offset_reset='earliest',
-                             bootstrap_servers=['kafka:9092'],value_deserializer=lambda m: json.loads(m.decode('utf-8')),
+                             bootstrap_servers=['kafka-service:9092'],value_deserializer=lambda m: json.loads(m.decode('utf-8')),
                                  api_version=(0, 10), consumer_timeout_ms=1000)
         return consumer
 
     def get_producer(self):
         _producer = None
         try:
-            _producer = KafkaProducer(bootstrap_servers=['kafka:9092'], api_version=(0, 10))
+            _producer = KafkaProducer(bootstrap_servers=['kafka-service:9092'], api_version=(0, 10))
         except Exception as ex:
             print('Exception while connecting Kafka')
             print(str(ex))
