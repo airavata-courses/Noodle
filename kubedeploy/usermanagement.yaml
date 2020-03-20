@@ -47,7 +47,6 @@ spec:
         image: mongo:4.0.4
         ports:
         - containerPort: 27017
-
 ---
 
 
@@ -71,3 +70,6 @@ spec:
         image: nayeemullahbaig/user-image
         ports:
         - containerPort: 5000
+        env:
+        - name: mongoURI
+          value: mongodb://udb/ADS

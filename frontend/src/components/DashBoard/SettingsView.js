@@ -19,7 +19,7 @@ const SettingsView = props => {
   };
 
   const [{ data, loading, error }, refetch] = useAxios(
-    'apigateway-service:5050/session-message',
+    process.env.API_GATEWAY+'/session-message',
     {username: user}
   )
   

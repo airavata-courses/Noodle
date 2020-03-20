@@ -61,3 +61,5 @@ spec:
         env:
           - name: SQLALCHEMY_DATABASE_URI
             value: postgresql://postgres:idontknow.3@rdb/retrievedb
+          - name: KAFKA_SERVER
+            value: kafka-serivce:9092

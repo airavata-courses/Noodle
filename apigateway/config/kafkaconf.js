@@ -1,7 +1,7 @@
 const kafka = require('kafka-node')
 const Producer = kafka.Producer
 const Consumer = kafka.Consumer
-const client = new kafka.KafkaClient({kafkaHost:KAFKA_SERVER})
+const client = new kafka.KafkaClient(process.env.KAFKA_SERVER)
 
 producer = new Producer(client);
 consumer = new Consumer(
