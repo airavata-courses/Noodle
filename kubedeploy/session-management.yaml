@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: smdb-service
 spec:
+  type: NodePort
   ports:
   - protocol: TCP
     port: 5436
