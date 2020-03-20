@@ -12,8 +12,7 @@ producer = new Producer(client);
 consumer = new Consumer(
 
   client,
-  [{ topic: 'current-status',
-    offset:1, 
+  [{ topic: 'current-status', 
     partition: 1 }],
     {
       autoCommit: false,
