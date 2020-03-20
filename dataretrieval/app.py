@@ -1,5 +1,4 @@
 from threading import Thread
-
 from flask import Flask
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
@@ -9,6 +8,7 @@ from model.message import Message
 from model.user import db, User
 from service import service
 import jsons
+import os
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
