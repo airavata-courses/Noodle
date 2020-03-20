@@ -29,7 +29,7 @@ const LoginPage = props => {
     //cookie = "email" + email ;
     bake_cookie(cookie_key,email);
     //cookies.set()
-    axios.post(process.env.USER_SERVICE+'/api/auth',{
+    axios.post('http://149.165.171.65:30001/api/auth',{
           email: email,
           password:password},{headers:{"Access-Control-Allow-Origin": "*"}})
             .then( (response)=> {
