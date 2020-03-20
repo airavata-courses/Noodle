@@ -2,6 +2,7 @@ const producer=require('../config/kafkaconf').producer
 
  function produce(message,topic) {
 
+
 smessage = JSON.stringify(message)
 return new Promise((resolve,reject)=>{
     let payloads = [
