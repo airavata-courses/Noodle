@@ -137,7 +137,6 @@ services:
 
   zookeeper:
     image: wurstmeister/zookeeper
-    
     ports:
       - "2181:2181"
     hostname: zookeeper
@@ -150,6 +149,7 @@ services:
     ports:
       - "9092:9092"
     hostname: kafka
+    
     networks:   
       - dis_network
     environment:

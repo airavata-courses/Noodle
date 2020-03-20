@@ -47,6 +47,14 @@ spec:
         ports:
         - containerPort: 9092
         env:
+        - name: BROKER_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: KAFKA_ADVERTISED_LISTENERS
+          value: "PLAINTEXT://$(BROKER_IP):9092"
+        - name: KAFKA_LISTENERS
+          value: "PLAINTEXT://0.0.0.0:9092"
         - name: KAFKA_ADVERTISED_PORT
           value: "9092"
         - name: KAFKA_ADVERTISED_HOST_NAME
@@ -55,8 +63,8 @@ spec:
           value: zookeeper:2181
         - name: KAFKA_BROKER_ID
           value: "0"
-        - name : KAFKA_CREATE_TOPICS
-          value : "processed-data:1:1,retrieved-data:1:1,data-retrieve:1:1,process-session:1:1,retrieve-session:1:1,model-session:1:1,current-status:1:1" 
+        - name: KAFKA_CREATE_TOPICS
+          value: "processed-data:1:1,retrieved-data:1:1,data-retrieve:1:1,process-session:1:1,retrieve-session:1:1,model-session:1:1,current-status:1:1" 
 
 ---
 apiVersion: apps/v1
