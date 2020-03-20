@@ -31,7 +31,7 @@ const LoginPage = props => {
     //cookies.set()
     axios.post(process.env.USER_SERVICE+'/api/auth',{
           email: email,
-          password:password})
+          password:password},{headers:{"Access-Control-Allow-Origin": "*"}})
             .then( (response)=> {
                 // handle success
                 if(response.data !== "Invalid credentials!")
