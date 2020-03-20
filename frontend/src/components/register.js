@@ -33,7 +33,8 @@ import "../App.css"
       axios.post('http://localhost:5000/api/user',{
             name: name,
             email: email,
-            password:password})
+            password:password},
+            {headers:{"Access-Control-Allow-Origin": "*"}})
               .then( (response)=> {
                   // handle success
                   if(response.data !== "Invalid credentials!")
