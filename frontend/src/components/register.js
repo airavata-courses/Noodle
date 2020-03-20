@@ -34,7 +34,8 @@ import "../App.css"
             name: name,
             email: email,
             password:password},
-            {headers:{"Access-Control-Allow-Origin": "*"}})
+            {headers:{'Access-Control-Allow-Origin': '*',
+                        'Content-Type':'application/json'}})
               .then( (response)=> {
                   // handle success
                   if(response.data !== "Invalid credentials!")
