@@ -1,7 +1,7 @@
 const kafka = require('kafka-node')
 const Producer = kafka.Producer
 const Consumer = kafka.Consumer
-const client = new kafka.KafkaClient(process.env.KAFKA_SERVER)
+const client = new kafka.KafkaClient({kafkaHost: 'kafka-service:9092'})
 
 
 let producer = null
@@ -17,7 +17,7 @@ consumer = new Consumer(
     {
       autoCommit: false,
       encoding: 'utf8',
-      fromOffset: true
+      fromOffset: false
     }
  )
   }
