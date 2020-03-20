@@ -34,7 +34,5 @@ spec:
         ports:
         - containerPort: 5050
         env:
-          - name: KAFKA_SERVER
-            value: kafka-service:9092
           - name: SESSION_SERVICE
             value: session-service:5010
