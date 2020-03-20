@@ -30,7 +30,7 @@ import "../App.css"
       //cookie = "email" + email ;
       bake_cookie(cookie_key,email);
       //cookies.set()
-      axios.post(process.env.REACT_APP_USER_SERVICE+'/api/user',{
+      axios.post('149.165.171.65:30300/api/user',{
             name: name,
             email: email,
             password:password},
