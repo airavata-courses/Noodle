@@ -20,7 +20,8 @@ const StatisticsView = props => {
 
   const [{ data, loading, error }, refetch] = useAxios(
     'http://149.165.171.65:30002/session-message',
-    {username: user}
+    {username: user},{headers:{'Access-Control-Allow-Origin': '*',
+    'Content-Type':'application/json'}}
   )
 
   console.log(user);

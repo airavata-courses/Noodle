@@ -54,7 +54,8 @@ const DashboardView = props => {
  
     e.preventDefault();
     axios.get('http://149.165.171.65:30002/session?username='+user,{params      
-          })
+          },{headers:{'Access-Control-Allow-Origin': '*',
+          'Content-Type':'application/json'}} )
             .then( (response)=> {
                 // handle success
                 if(response.data )
