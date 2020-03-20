@@ -26,7 +26,7 @@ module.exports = function(app) {
         msg = req.body
         id = req.query.username
         console.log(req.query.username);
-       
+        console.log("received message in session");
         axios.get('http://149.165.171.65:30030/session-data?username='+ id).then(function(response) {
                 console.log(response.data);
                 res.send(response.data);
@@ -34,14 +34,14 @@ module.exports = function(app) {
     });
 
     app.post("/task",function( req,res){
-            
+            console.log("received message in task");
             let uid = uuidv1()
             msg = req.body
             user = msg['user']
             let data = {"station":msg['station'],'user':user,'job':'data retrieval'}
             
             task.produce(data,'data-retrieve')
-
+            console.log("produced");
             data = {"station":msg['station'],"uid":uid,'user':user,'job':'data retrieval',status:'Retrieval Process Started'}
             res.send(data)
 
