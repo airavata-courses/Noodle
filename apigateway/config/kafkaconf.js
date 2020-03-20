@@ -13,7 +13,7 @@ consumer = new Consumer(
 
   client,
   [{ topic: 'current-status', 
-    partition: 1 }],
+    partitions: 1 }],
     {
       autoCommit: false,
       encoding: 'utf8',
