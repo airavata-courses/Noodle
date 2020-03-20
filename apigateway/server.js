@@ -37,19 +37,19 @@ app.listen(PORT, () => console.log('API Gateway Server started on port ' +PORT))
 
 var topics = [{
     topic: 'current-status',
-    partitions: 0,
+    partitions: 1,
     replicationFactor: 1
   },{
     topic: 'data-retrieve',
-    partitions: 0,
+    partitions: 1,
     replicationFactor: 1
   },{
     topic: 'retrieved-data',
-    partitions: 0,
+    partitions: 1,
     replicationFactor: 1
   },{
     topic: 'retrieve-session',
-    partitions: 0,
+    partitions: 1,
     replicationFactor: 1
   }]
   client.createTopics(topics, (error, result) => {
