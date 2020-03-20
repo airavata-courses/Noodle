@@ -29,10 +29,11 @@ spec:
       containers:
       - name: frontend-image
         image: nayeemullahbaig/frontend-image
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         env:
         - name: API_GATEWAY
           value: apigateway-service:5050
         - name: REACT_APP_USER_SERVICE
-          value: user-service:5000
+          value: http://user-service:5000
