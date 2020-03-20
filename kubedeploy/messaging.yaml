@@ -9,7 +9,7 @@ spec:
     targetPort: 9092
   selector:
     app: kafka
-    id: "0"
+   
 
 ---
 
@@ -47,6 +47,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 2181
+        
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -61,7 +62,7 @@ spec:
     metadata:
       labels:
         app: kafka
-        id: "0"
+       
     spec:
       containers:
       - name: kafka
