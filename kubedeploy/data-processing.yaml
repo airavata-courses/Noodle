@@ -60,6 +60,6 @@ spec:
         image: nayeemullahbaig/process-image
         env:
           - name: SQLALCHEMY_DATABASE_URI
-            value: postgresql://postgres:idontknow.3@pdb/processdb
+            value: postgresql://postgres:idontknow.3@pdb:5434/processdb
           - name: KAFKA_SERVER
             value: kafka-serivce:9092

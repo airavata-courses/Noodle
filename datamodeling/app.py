@@ -1,4 +1,5 @@
 import jsons
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
@@ -17,7 +18,7 @@ from flask import json
 app = Flask(__name__)
 app.config['DEBUG'] = True
 #app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:idontknow.3@localhost:5432/modeldb'
-print(app.config['SQLALCHEMY_DATABASE_URI'])
+print(os.environ['SQLALCHEMY_DATABASE_URI'])
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 db.init_app(app)
 db.app = app

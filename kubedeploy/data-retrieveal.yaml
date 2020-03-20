@@ -60,6 +60,6 @@ spec:
         image: nayeemullahbaig/retrieve-image
         env:
           - name: SQLALCHEMY_DATABASE_URI
-            value: postgresql://postgres:idontknow.3@rdb/retrievedb
+            value: postgresql://postgres:idontknow.3@rdb:5433/retrievedb
           - name: KAFKA_SERVER
             value: kafka-serivce:9092

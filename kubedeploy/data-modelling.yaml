@@ -60,6 +60,6 @@ spec:
         image: nayeemullahbaig/model-image
         env:
           - name: SQLALCHEMY_DATABASE_URI
-            value: postgresql://postgres:idontknow.3@mdb/modeldb
+            value: postgresql://postgres:idontknow.3@mdb:5435/modeldb
           - name: KAFKA_SERVER
             value: kafka-serivce:9092
