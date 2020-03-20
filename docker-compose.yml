@@ -137,6 +137,7 @@ services:
 
   zookeeper:
     image: wurstmeister/zookeeper
+    
     ports:
       - "2181:2181"
     hostname: zookeeper
@@ -152,7 +153,7 @@ services:
     networks:   
       - dis_network
     environment:
-      KAFKA_CREATE_TOPICS: "processed-data:1:1,retrieved-data:1:1,data-retrieve:1:1,process-session:1:1,retrieve-session:1:1,model-session:1:1,current-status:1:1" 
+      KAFKA_CREATE_TOPICS: "processed-data:1:1,retrieved-data:1:1,data-retrieve:1:1,process-session:1:1,retrieve-session:1:1,model-session:1:1,current-status:1:1,kafka-status:1:1" 
       KAFKA_ADVERTISED_HOST_NAME: kafka
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_PORT: 9092

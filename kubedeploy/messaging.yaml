@@ -43,6 +43,7 @@ spec:
       containers:
       - name: kafka
         image: wurstmeister/kafka
+        imagePullPolicy: Always
         ports:
         - containerPort: 9092
         env:
@@ -75,5 +76,6 @@ spec:
       containers:
       - name: zookeeper
         image: wurstmeister/zookeeper
+        imagePullPolicy: Always
         ports:
         - containerPort: 2181
