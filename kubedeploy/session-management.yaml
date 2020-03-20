@@ -22,7 +22,7 @@ spec:
   - protocol: TCP
     port: 5010
     targetPort: 5010
-    nodePort: 30003
+    nodePort: 30030
   selector:
     app: session-man
 
