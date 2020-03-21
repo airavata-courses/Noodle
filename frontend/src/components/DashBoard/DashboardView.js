@@ -50,7 +50,7 @@ const DashboardView = props => {
     //cookies.set()
     axios.post('http://149.165.171.65:30002/task',{
           user: user,
-          station:url})
+          station:"2019/06/26/KVWX/KVWX20190626_221105_V06"})
             .then( (response)=> {
                 // handle success
                 if(response.data )
