@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: apigateway-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - protocol: TCP
     port: 5050
@@ -18,7 +18,7 @@ kind: Deployment
 metadata:
   name: apigateway-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: apigateway

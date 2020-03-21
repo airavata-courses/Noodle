@@ -62,7 +62,7 @@ kind: Deployment
 metadata:
   name: session-man-dep
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: session-man
