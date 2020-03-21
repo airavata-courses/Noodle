@@ -1,0 +1,25 @@
+node{
+    
+    stage("Git Clone")
+    {
+        git branch: 'integration', credentialsId: 'GIT_CREDENTIALS', url: 'https://github.com/airavata-courses/Noodle.git'
+    }
+    stage('Building Docker Image')
+    {
+			sh "docker-compose build"
+              
+    }
+    stage('Pushing to Docker hub') 
+    {
+        withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
+            sh "docker login docker.io -u nayeemullahbaig -p ${DOCKER_HUB_CREDENTIALS}"
+           
+        }
+             
+             sh "docker-compose push"
+            
+    }    
+    
+    
+    
+}
