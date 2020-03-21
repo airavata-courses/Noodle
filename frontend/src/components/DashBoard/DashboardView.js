@@ -6,7 +6,7 @@ import { read_cookie} from 'sfcookies';
 // import { bake_cookie} from 'sfcookies';
 import axios from "axios";
 const DashboardView = props => {
-  // const [url, setUrl] = useState("");
+  var url = "";
   var fetchedUrl = ""
   var user = '';
   const goToSettingsPage = (e) => {
@@ -15,16 +15,41 @@ const DashboardView = props => {
     
     console.log(Date);         
     
-    // if (Date === 1)
-    // {
-    //   url = "2019/06/26/KVWX/KVWX20190626_221105_V06";
+    if (Date === 1)
+    {
+      url = "2019/06/26/KVWX/KVWX20190626_221105_V06";
 
-    // }
+    }
+    if (Date === 2)
+    {
+      url = "2019/06/26/KVWX/KVWX20190626_221618_V06";
+
+    }
+    if (Date === 3)
+    {
+      url = "2019/06/26/KVWX/KVWX20190626_233410_V06";
+
+    }
+    if (Date === 4)
+    {
+      url = "2019/06/26/KVWX/KVWX20190626_230319_V06";
+
+    }
+    if (Date === 5)
+    {
+      url = "2019/06/26/KVWX/KVWX20190626_234512_V06";
+
+    }
+    if (Date === 6)
+    {
+      url = "2019/06/26/KVWX/KVWX20190626_235042_V06";
+
+    }
     
     //cookies.set()
     axios.post('http://149.165.171.65:30002/task',{
           user: user,
-          station:"2019/06/26/KVWX/KVWX20190626_221105_V06"})
+          station:url})
             .then( (response)=> {
                 // handle success
                 if(response.data )
@@ -151,10 +176,14 @@ const DashboardView = props => {
     <div>
     <p>    
         Search   <select onChange={handleChange} value={Date}>
-          <option value="1">Address 1</option>
-          <option value="2">Address 2</option>
-          <option value="3">Address 3</option>
-       </select>
+          <option value="1">2019/06/26/KVWX/KVWX20190626_221105_V06</option>
+          <option value="2">2019/06/26/KVWX/KVWX20190626_221618_V06</option>
+          <option value="3">2019/06/26/KVWX/KVWX20190626_233410_V06</option>
+          <option value="4">2019/06/26/KVWX/KVWX20190626_230319_V06</option>
+          <option value="5">2019/06/26/KVWX/KVWX20190626_234512_V06</option>
+          <option value="6">2019/06/26/KVWX/KVWX20190626_235042_V06</option>
+        
+        </select>
         </p>
         </div>      
         
