@@ -4,7 +4,7 @@
   "description": "User management service",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --exit"
   },
   "author": "Nayeemullah Baig",
   "license": "MIT",
@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
     "jsonwebtoken": "^8.5.1",
+    "mocha": "^7.1.1",
     "mongoose": "^5.8.11",
     "supertest": "^4.0.2"
   }
