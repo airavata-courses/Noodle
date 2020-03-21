@@ -4,6 +4,19 @@ node{
     {
         git branch: 'integration', credentialsId: 'GIT_CREDENTIALS', url: 'https://github.com/airavata-courses/Noodle.git'
     }
+	stage('Testing Session Service') {
+                        
+                sh '''
+       
+                    sudo apt --assume-yes install maven
+                    cd "sessionmanagement"
+                    mvn pre-clean
+                    mvn compile
+                    mvn package
+                    
+                    '''             
+    
+    }  
     stage('Building Docker Image')
     {
 			sh "docker-compose build"
@@ -18,8 +31,51 @@ node{
              
              sh "docker-compose push"
             
+    }
+	stage('Deploy app in K8s')
+    {
+       
+        kubernetesDeploy(
+            configs: 'kubedeploy/messaging.yaml', 
+            kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+            enableConfigSubstitution: true
+        )
+        kubernetesDeploy(
+            configs: 'kubedeploy/data-retrieveal.yaml', 
+            kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+            enableConfigSubstitution: true
+        )
+        kubernetesDeploy(
+            configs: 'kubedeploy/data-processing.yaml', 
+            kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+            enableConfigSubstitution: true
+        )
+        kubernetesDeploy(
+            configs: 'kubedeploy/data-modelling.yaml', 
+            kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+            enableConfigSubstitution: true
+        )
+        kubernetesDeploy(
+            configs: 'kubedeploy/session-management.yaml', 
+            kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+            enableConfigSubstitution: true
+        )
+        kubernetesDeploy(
+            configs: 'kubedeploy/usermanagement.yaml', 
+            kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+            enableConfigSubstitution: true
+        )
+        kubernetesDeploy(
+            configs: 'kubedeploy/apigateway.yaml', 
+            kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+            enableConfigSubstitution: true
+        )
+         kubernetesDeploy(
+            configs: 'kubedeploy/frontend.yaml', 
+            kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+            enableConfigSubstitution: true
+        )
+        
     }    
-    
-    
     
 }
