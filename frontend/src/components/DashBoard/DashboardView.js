@@ -18,6 +18,7 @@ const DashboardView = props => {
     if (Date === 1)
     {
       url = "2019/06/26/KVWX/KVWX20190626_221105_V06";
+      console.log(url);
 
     }
     if (Date === 2)
