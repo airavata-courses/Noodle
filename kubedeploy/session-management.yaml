@@ -33,7 +33,7 @@ kind: Deployment
 metadata:
   name: smdb-dep
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: smdb
@@ -62,7 +62,7 @@ kind: Deployment
 metadata:
   name: session-man-dep
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: session-man
