@@ -17,7 +17,7 @@ kind: Deployment
 metadata:
   name: pdb-dep
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: pdb
@@ -46,7 +46,7 @@ kind: Deployment
 metadata:
   name: data-process-dep
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: data-process
