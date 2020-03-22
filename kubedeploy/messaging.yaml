@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: kafka-service
 spec:
+  type: LoadBalancer
   ports:
   - protocol: TCP
     port: 9092
@@ -18,6 +19,7 @@ kind: Service
 metadata:
   name: zookeeper
 spec:
+  type: LoadBalancer
   selector:
     app: zookeeper
   ports:
