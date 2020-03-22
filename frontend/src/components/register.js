@@ -48,6 +48,7 @@ import "../App.css"
   
               },(error) =>{
                 console.log(error);
+                alert(error);
               });        
     };
    
@@ -96,7 +97,7 @@ import "../App.css"
                 <Input.Password
                   size="large"
                   type="password"
-                  placeholder="Password"
+                  placeholder="Password - min 6 chars"
                   value = {password}
                   onChange = {e => setPassword(e.target.value)}
                 />

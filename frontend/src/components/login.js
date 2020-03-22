@@ -41,10 +41,12 @@ const LoginPage = props => {
                   props.history.push(routes.dashboard);
                 }                
                 console.log(response);
+                alert(response);
                 //this.setState({prediction:response.data})
 
             },(error) =>{
               console.log(error);
+              alert(error);
             });        
   };
  
