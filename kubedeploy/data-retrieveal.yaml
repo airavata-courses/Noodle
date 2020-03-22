@@ -17,7 +17,7 @@ kind: Deployment
 metadata:
   name: rdb-dep
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: rdb
@@ -46,7 +46,7 @@ kind: Deployment
 metadata:
   name: data-retrieval-dep
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: data-retrieval
