@@ -11,7 +11,6 @@ spec:
   selector:
     app: kafka
    
-
 ---
 
 apiVersion: v1
