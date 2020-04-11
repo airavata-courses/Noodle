@@ -17,7 +17,7 @@ kind: Deployment
 metadata:
   name: mdb-dep
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: mdb
@@ -46,7 +46,7 @@ kind: Deployment
 metadata:
   name: data-model-dep
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: data-model
