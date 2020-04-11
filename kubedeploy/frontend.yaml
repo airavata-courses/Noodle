@@ -10,6 +10,7 @@ spec:
     targetPort: 3000
   selector:
     app: frontend
+    
 ---
 
 apiVersion: apps/v1
