@@ -34,7 +34,7 @@ kind: Deployment
 metadata:
   name: userman-db
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: udb
@@ -59,7 +59,7 @@ spec:
   selector:
     matchLabels:
       app: usermanagement
-  replicas: 5
+  replicas: 1
   template:
     metadata:
       labels:
