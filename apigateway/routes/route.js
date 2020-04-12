@@ -27,7 +27,7 @@ module.exports = function(app) {
         id = req.query.username
         console.log(req.query.username);
         console.log("received message in session");
-        axios.get('http://149.165.171.65:30030/session-data?username='+ id).then(function(response) {
+        axios.get('http://149.165.168.99:30030/session-data?username='+ id).then(function(response) {
                 console.log(response.data);
                 res.send(response.data);
               });
