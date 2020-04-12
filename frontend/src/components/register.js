@@ -30,7 +30,7 @@ import "../App.css"
       //cookie = "email" + email ;
       bake_cookie(cookie_key,email);
       //cookies.set()
-      axios.post('http://149.165.171.65:30001/api/user',{
+      axios.post('http://149.165.168.99:30001/api/user',{
             name: name,
             email: email,
             password:password},
