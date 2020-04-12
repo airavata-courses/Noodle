@@ -19,7 +19,7 @@ const SettingsView = props => {
   };
 
   const [{ data, loading, error }, refetch] = useAxios(
-    'http://149.165.171.65:30002/session-message',
+    'http://149.165.168.99:30002/session-message',
     {username: user}
   )
   
