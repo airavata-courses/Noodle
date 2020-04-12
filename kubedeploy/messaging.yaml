@@ -10,7 +10,6 @@ spec:
     targetPort: 9092
   selector:
     app: kafka
-   
 ---
 
 apiVersion: v1
