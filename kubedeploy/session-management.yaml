@@ -41,6 +41,7 @@ spec:
     metadata:
       labels:
         app: smdb
+        version: v1
     spec:
       containers:
       - name: smdb
@@ -70,6 +71,7 @@ spec:
     metadata:
       labels:
         app: session-man
+        version: v1
     spec:
       containers:
       - name: session-image

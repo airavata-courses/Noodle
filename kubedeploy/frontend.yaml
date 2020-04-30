@@ -26,6 +26,7 @@ spec:
     metadata:
       labels:
         app: frontend
+        version: v1
     spec:
       containers:
       - name: frontend-image

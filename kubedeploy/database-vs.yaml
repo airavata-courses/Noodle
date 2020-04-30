@@ -1,0 +1,79 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: mdb
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - noodle-gateway
+  http:
+  - route:
+    - destination:
+        host: mdb
+        
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: pdb
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - noodle-gateway
+  http:
+  - route:
+    - destination:
+        host: pdb
+        
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: rdb
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - noodle-gateway
+  http:
+  - route:
+    - destination:
+        host: rdb
+        
+---
+
+
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: smdb-service
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - noodle-gateway
+  http:
+  - route:
+    - destination:
+        host: smdb-service
+        
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: udb
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - noodle-gateway
+  http:
+  - route:
+    - destination:
+        host: udb
+

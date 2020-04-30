@@ -42,6 +42,8 @@ spec:
     metadata:
       labels:
         app: udb
+        version: v1
+
     spec:
       containers:
       - name: udb
@@ -64,6 +66,7 @@ spec:
     metadata:
       labels:
         app: usermanagement
+        version: v1
     spec:
       containers:
       - name: user-image

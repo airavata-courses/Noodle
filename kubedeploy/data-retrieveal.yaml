@@ -25,6 +25,7 @@ spec:
     metadata:
       labels:
         app: rdb
+        version: v1
     spec:
       containers:
       - name: rdb
@@ -54,6 +55,7 @@ spec:
     metadata:
       labels:
         app: data-retrieval
+        version: v1
     spec:
       containers:
       - name: retrieve-image

@@ -21,6 +21,7 @@ spec:
   selector:
     matchLabels:
       app: pdb
+      version: v1
   template:
     metadata:
       labels:
@@ -54,6 +55,7 @@ spec:
     metadata:
       labels:
         app: data-process
+        version: v1
     spec:
       containers:
       - name: process-image

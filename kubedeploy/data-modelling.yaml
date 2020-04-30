@@ -25,6 +25,7 @@ spec:
     metadata:
       labels:
         app: mdb
+        version: v1
     spec:
       containers:
       - name: mdb
@@ -54,6 +55,7 @@ spec:
     metadata:
       labels:
         app: data-model
+        version: v1
     spec:
       containers:
       - name: model-image

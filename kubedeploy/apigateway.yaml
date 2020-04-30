@@ -26,6 +26,7 @@ spec:
     metadata:
       labels:
         app: apigateway
+        version: v1
     spec:
       containers:
       - name: apigateway
