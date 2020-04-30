@@ -21,11 +21,11 @@ spec:
   selector:
     matchLabels:
       app: pdb
-      version: v1
   template:
     metadata:
       labels:
         app: pdb
+        version: v1
     spec:
       containers:
       - name: pdb
