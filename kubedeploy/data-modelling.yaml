@@ -21,7 +21,6 @@ spec:
   selector:
     matchLabels:
       app: mdb
-      version: v1
   template:
     metadata:
       labels:
