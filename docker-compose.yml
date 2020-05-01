@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   mdb:
-    container_name: mdb
+    container_name: mdb:0.2
     restart: always
     image: postgres:12
     environment:
@@ -15,7 +15,7 @@ services:
     networks:
       - dis_network
   smdb:
-    container_name: smdb
+    container_name: smdb:0.2
     restart: always
     image: postgres:12
     environment:
@@ -30,7 +30,7 @@ services:
       - dis_network
    
   pdb:
-    container_name: pdb
+    container_name: pdb:0.2
     restart: always
     image: postgres:12
     environment:
@@ -45,7 +45,7 @@ services:
       - dis_network
 
   rdb:
-    container_name: rdb
+    container_name: rdb:0.2
     restart: always
     image: postgres:12
     environment:
@@ -60,7 +60,7 @@ services:
       - dis_network
 
   model-image:
-    image: nayeemullahbaig/model-image
+    image: nayeemullahbaig/model-image:0.2
     container_name: model-image
     build: ./datamodeling
     environment:
@@ -77,7 +77,7 @@ services:
       - dis_network
 
   process-image:
-    image: nayeemullahbaig/process-image
+    image: nayeemullahbaig/process-image:0.2
     container_name: process-image
     build: ./dataprocessing
     environment:
@@ -94,7 +94,7 @@ services:
       - dis_network
  
   retrieve-image:
-    image: nayeemullahbaig/retrieve-image
+    image: nayeemullahbaig/retrieve-image:0.2
     container_name: retrieve-image
     build: ./dataretrieval
     environment:
@@ -111,7 +111,7 @@ services:
       - dis_network
 
   session-image:
-    image: nayeemullahbaig/session-image
+    image: nayeemullahbaig/session-image:0.2
     container_name: session-image
     build: ./sessionmanagement
     ports:
@@ -125,7 +125,7 @@ services:
       - dis_network
 
   fronted-image:
-    image: nayeemullahbaig/frontend-image
+    image: nayeemullahbaig/frontend-image:0.2
     container_name: frontend-image
     build: ./frontend
     ports:
@@ -167,7 +167,7 @@ services:
       - zookeeper
     
   user-image:
-    image: nayeemullahbaig/user-image
+    image: nayeemullahbaig/user-image:0.2
     container_name: user-image
     build: ./usermanagement
     ports:
@@ -180,7 +180,7 @@ services:
      - dis_network 
   
   apigateway-image:
-    image: nayeemullahbaig/apigateway-image
+    image: nayeemullahbaig/apigateway-image:0.2
     container_name: apigateway-image
     build: ./apigateway
     ports:
@@ -197,7 +197,7 @@ services:
      - dis_network 
   
   udb:
-    container_name: udb
+    container_name: udb:0.2
     image: mongo
     expose:
       - 27017
