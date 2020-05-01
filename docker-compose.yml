@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   mdb:
-    container_name: mdb:0.2
+    container_name: mdb
     restart: always
     image: postgres:12
     environment:
@@ -15,7 +15,7 @@ services:
     networks:
       - dis_network
   smdb:
-    container_name: smdb:0.2
+    container_name: smdb
     restart: always
     image: postgres:12
     environment:
@@ -30,7 +30,7 @@ services:
       - dis_network
    
   pdb:
-    container_name: pdb:0.2
+    container_name: pdb
     restart: always
     image: postgres:12
     environment:
@@ -45,7 +45,7 @@ services:
       - dis_network
 
   rdb:
-    container_name: rdb:0.2
+    container_name: rdb
     restart: always
     image: postgres:12
     environment:

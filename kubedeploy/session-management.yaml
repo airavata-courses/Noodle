@@ -37,6 +37,7 @@ spec:
   selector:
     matchLabels:
       app: smdb
+      version: v1
   template:
     metadata:
       labels:
@@ -67,6 +68,7 @@ spec:
   selector:
     matchLabels:
       app: session-man
+      version: v1
   template:
     metadata:
       labels:
@@ -82,3 +84,33 @@ spec:
         env:
         - name: POSTGRES_HOST
           value: smdb-service:5436
+          
+          
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: session-man-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: session-man
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: session-man
+        version: v2
+    spec:
+      containers:
+      - name: session-image
+        image: nayeemullahbaig/session-image:0.2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5010
+        env:
+        - name: POSTGRES_HOST
+          value: smdb-service:5436
+

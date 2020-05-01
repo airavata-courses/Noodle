@@ -21,6 +21,7 @@ spec:
   selector:
     matchLabels:
       app: pdb
+      version: v1
   template:
     metadata:
       labels:
@@ -51,6 +52,7 @@ spec:
   selector:
     matchLabels:
       app: data-process
+      version: v1
   template:
     metadata:
       labels:
@@ -65,3 +67,32 @@ spec:
             value: postgresql://postgres:idontknow.3@pdb:5434/processdb
           - name: KAFKA_SERVER
             value: kafka-serivce:9092
+            
+            
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-process-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-process
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: data-process
+        version: v2
+    spec:
+      containers:
+      - name: process-image
+        image: nayeemullahbaig/process-image:0.2
+        env:
+          - name: SQLALCHEMY_DATABASE_URI
+            value: postgresql://postgres:idontknow.3@pdb:5434/processdb
+          - name: KAFKA_SERVER
+            value: kafka-serivce:9092
+

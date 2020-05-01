@@ -22,6 +22,7 @@ spec:
   selector:
     matchLabels:
       app: frontend
+      version: v1
   template:
     metadata:
       labels:
@@ -39,3 +40,34 @@ spec:
           value: apigateway-service:5050
         - name: REACT_APP_USER_SERVICE
           value: http://user-service:5000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: frontend
+        version: v2
+    spec:
+      containers:
+      - name: frontend-image
+        image: nayeemullahbaig/frontend-image:0.2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+        - name: API_GATEWAY
+          value: apigateway-service:5050
+        - name: REACT_APP_USER_SERVICE
+          value: http://user-service:5000
+

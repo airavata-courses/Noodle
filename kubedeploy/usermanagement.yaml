@@ -11,7 +11,7 @@ spec:
     nodePort: 30001
  selector:
   app: usermanagement
-
+  
 ---
 
 apiVersion: v1
@@ -38,6 +38,7 @@ spec:
   selector:
     matchLabels:
       app: udb
+      version: v1
   template:
     metadata:
       labels:
@@ -50,8 +51,8 @@ spec:
         image: mongo:4.0.4
         ports:
         - containerPort: 27017
+        
 ---
-
 
 apiVersion: apps/v1
 kind: Deployment
@@ -61,6 +62,7 @@ spec:
   selector:
     matchLabels:
       app: usermanagement
+      version: v1
   replicas: 1
   template:
     metadata:
@@ -72,6 +74,35 @@ spec:
       - name: user-image
         imagePullPolicy: Always
         image: nayeemullahbaig/user-image
+        ports:
+        - containerPort: 5000
+        env:
+        - name: mongoURI
+          value: mongodb://udb/ADS
+          
+          
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usermanagement-deployment
+spec:
+  selector:
+    matchLabels:
+      app: usermanagement
+      version: v2
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: usermanagement
+        version: v2
+    spec:
+      containers:
+      - name: user-image
+        imagePullPolicy: Always
+        image: nayeemullahbaig/user-image:0.2
         ports:
         - containerPort: 5000
         env:
