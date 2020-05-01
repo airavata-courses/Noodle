@@ -67,7 +67,6 @@ spec:
   selector:
     matchLabels:
       app: session-man
-      version: v1
   template:
     metadata:
       labels:
