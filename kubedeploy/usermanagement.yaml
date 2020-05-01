@@ -38,7 +38,6 @@ spec:
   selector:
     matchLabels:
       app: udb
-      version: v1
   template:
     metadata:
       labels:
@@ -62,7 +61,6 @@ spec:
   selector:
     matchLabels:
       app: usermanagement
-      version: v1
   replicas: 1
   template:
     metadata:
@@ -86,12 +84,11 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: usermanagement-deployment
+  name: usermanagement-deployment2
 spec:
   selector:
     matchLabels:
       app: usermanagement
-      version: v2
   replicas: 1
   template:
     metadata:

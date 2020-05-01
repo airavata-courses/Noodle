@@ -51,7 +51,6 @@ spec:
   selector:
     matchLabels:
       app: data-process
-      version: v1
   template:
     metadata:
       labels:
@@ -73,13 +72,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: data-process-dep
+  name: data-process-dep2
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: data-process
-      version: v2
   template:
     metadata:
       labels:

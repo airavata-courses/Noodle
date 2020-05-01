@@ -37,7 +37,6 @@ spec:
   selector:
     matchLabels:
       app: smdb
-      version: v1
   template:
     metadata:
       labels:
@@ -91,13 +90,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: session-man-dep
+  name: session-man-dep2
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: session-man
-      version: v2
   template:
     metadata:
       labels:

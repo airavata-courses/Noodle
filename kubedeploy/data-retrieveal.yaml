@@ -51,7 +51,6 @@ spec:
   selector:
     matchLabels:
       app: data-retrieval
-      version: v1
   template:
     metadata:
       labels:
@@ -72,13 +71,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: data-retrieval-dep
+  name: data-retrieval-dep2
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: data-retrieval
-      version: v2
   template:
     metadata:
       labels:
