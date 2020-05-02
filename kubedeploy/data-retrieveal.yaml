@@ -66,29 +66,5 @@ spec:
           - name: KAFKA_SERVER
             value: kafka-serivce:9092
             
----
 
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: data-retrieval-dep2
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: data-retrieval
-  template:
-    metadata:
-      labels:
-        app: data-retrieval
-        version: v2
-    spec:
-      containers:
-      - name: retrieve-image
-        image: nayeemullahbaig/retrieve-image:0.2
-        env:
-          - name: SQLALCHEMY_DATABASE_URI
-            value: postgresql://postgres:idontknow.3@rdb:5433/retrievedb
-          - name: KAFKA_SERVER
-            value: kafka-serivce:9092
 

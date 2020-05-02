@@ -4,13 +4,19 @@ metadata:
   name: apigateway-service
 spec:
   hosts:
-  - "*"
+  - apigateway-service
   gateways:
   - noodle-gateway
   http:
   - route:
     - destination:
         host: apigateway-service
+        subset: v1
+      weight: 50
+    - destination:
+        host: apigateway-service
+        subset: v2
+      weight: 50
         
 ---
 
@@ -21,14 +27,19 @@ metadata:
   name: frontend-service
 spec:
   hosts:
-  - "*"
+  - frontend-service
   gateways:
   - noodle-gateway
   http:
   - route:
     - destination:
         host: frontend-service
-        
+        subset: v1
+      weight: 65
+    - destination:
+        host: frontend-service
+        subset: v2
+      weight: 35
 ---
 
 
@@ -38,13 +49,19 @@ metadata:
   name: session-service
 spec:
   hosts:
-  - "*"
+  - session-service
   gateways:
   - noodle-gateway
-  http:
+ http:
   - route:
     - destination:
         host: session-service
+        subset: v1
+      weight: 65
+    - destination:
+        host: session-service
+        subset: v2
+      weight: 35
         
         
 ---
@@ -55,12 +72,18 @@ metadata:
   name: user-service
 spec:
   hosts:
-  - "*"
+  - user-service
   gateways:
   - noodle-gateway
   http:
   - route:
     - destination:
         host: user-service
+        subset: v1
+      weight: 65
+    - destination:
+        host: user-service
+        subset: v2
+      weight: 35
         
         
