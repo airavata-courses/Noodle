@@ -1,6 +1,28 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
+  name: session-service
+spec:
+  hosts:
+  - session-service
+  gateways:
+  - noodle-gateway
+  http:
+  - route:
+    - destination:
+        host: session-service
+        subset: v1
+      weight: 65
+    - destination:
+        host: session-service
+        subset: v2
+      weight: 35
+
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
   name: apigateway-service
 spec:
   hosts:
@@ -40,31 +62,10 @@ spec:
         host: frontend-service
         subset: v2
       weight: 35
+      
+      
 ---
-
-
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: session-service
-spec:
-  hosts:
-  - session-service
-  gateways:
-  - noodle-gateway
- http:
-  - route:
-    - destination:
-        host: session-service
-        subset: v1
-      weight: 65
-    - destination:
-        host: session-service
-        subset: v2
-      weight: 35
-        
-        
----
+    
 
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -85,5 +86,5 @@ spec:
         host: user-service
         subset: v2
       weight: 35
-        
+      
         
