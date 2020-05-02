@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: session-service
+  name: session-vservice
 spec:
   hosts:
   - session-service
@@ -23,7 +23,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: apigateway-service
+  name: apigateway-vservice
 spec:
   hosts:
   - apigateway-service
@@ -46,7 +46,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: frontend-service
+  name: frontend-vservice
 spec:
   hosts:
   - frontend-service
@@ -70,7 +70,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: user-service
+  name: user-vservice
 spec:
   hosts:
   - user-service
