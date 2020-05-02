@@ -44,7 +44,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apigateway-deployment
+  name: apigateway-deployment2
 spec:
   replicas: 1
   selector:
