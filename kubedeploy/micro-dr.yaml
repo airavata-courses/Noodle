@@ -5,8 +5,17 @@ metadata:
 spec:
   host: apigateway-service
   trafficPolicy:
-    loadBalancer:
-      simple: RANDOM
+    connectionPool:
+      tcp:
+        maxConnections: 2
+      http:
+        http1MaxPendingRequests: 10
+        maxRequestsPerConnection: 10
+    outlierDetection:
+      consecutiveErrors: 3
+      interval: 1s
+      baseEjectionTime: 3m
+      maxEjectionPercent: 100
   subsets:
   - name: v1
     labels:
@@ -23,8 +32,17 @@ metadata:
 spec:
   host: frontend-service
   trafficPolicy:
-    loadBalancer:
-      simple: RANDOM
+    connectionPool:
+      tcp:
+        maxConnections: 2
+      http:
+        http1MaxPendingRequests: 10
+        maxRequestsPerConnection: 10
+    outlierDetection:
+      consecutiveErrors: 3
+      interval: 1s
+      baseEjectionTime: 3m
+      maxEjectionPercent: 100
   subsets:
   - name: v1
     labels:
@@ -42,8 +60,17 @@ metadata:
 spec:
   host: session-service
   trafficPolicy:
-    loadBalancer:
-      simple: RANDOM
+    connectionPool:
+      tcp:
+        maxConnections: 2
+      http:
+        http1MaxPendingRequests: 10
+        maxRequestsPerConnection: 10
+    outlierDetection:
+      consecutiveErrors: 3
+      interval: 1s
+      baseEjectionTime: 3m
+      maxEjectionPercent: 100
   subsets:
   - name: v1
     labels:
@@ -61,8 +88,17 @@ metadata:
 spec:
   host: user-service
   trafficPolicy:
-    loadBalancer:
-      simple: RANDOM
+    connectionPool:
+      tcp:
+        maxConnections: 2
+      http:
+        http1MaxPendingRequests: 10
+        maxRequestsPerConnection: 10
+    outlierDetection:
+      consecutiveErrors: 3
+      interval: 1s
+      baseEjectionTime: 3m
+      maxEjectionPercent: 100
   subsets:
   - name: v1
     labels:

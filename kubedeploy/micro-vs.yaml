@@ -4,17 +4,17 @@ metadata:
   name: session-vservice
 spec:
   hosts:
-  - session-service
+  - session-service.default.svc.cluster.local
   gateways:
   - noodle-gateway
   http:
   - route:
     - destination:
-        host: session-service
+        host: session-service.default.svc.cluster.local
         subset: v1
       weight: 65
     - destination:
-        host: session-service
+        host: session-service.default.svc.cluster.local
         subset: v2
       weight: 35
 
@@ -26,17 +26,17 @@ metadata:
   name: apigateway-vservice
 spec:
   hosts:
-  - apigateway-service
+  - apigateway-service.default.svc.cluster.local
   gateways:
   - noodle-gateway
   http:
   - route:
     - destination:
-        host: apigateway-service
+        host: apigateway-service.default.svc.cluster.local
         subset: v1
       weight: 50
     - destination:
-        host: apigateway-service
+        host: apigateway-service.default.svc.cluster.local
         subset: v2
       weight: 50
         
@@ -49,17 +49,17 @@ metadata:
   name: frontend-vservice
 spec:
   hosts:
-  - frontend-service
+  - frontend-service.default.svc.cluster.local
   gateways:
   - noodle-gateway
   http:
   - route:
     - destination:
-        host: frontend-service
+        host: frontend-service.default.svc.cluster.local
         subset: v1
       weight: 65
     - destination:
-        host: frontend-service
+        host: frontend-service.default.svc.cluster.local
         subset: v2
       weight: 35
       
@@ -73,17 +73,17 @@ metadata:
   name: user-vservice
 spec:
   hosts:
-  - user-service
+  - user-service.default.svc.cluster.local
   gateways:
   - noodle-gateway
   http:
   - route:
     - destination:
-        host: user-service
+        host: user-service.default.svc.cluster.local
         subset: v1
       weight: 65
     - destination:
-        host: user-service
+        host: user-service.default.svc.cluster.local
         subset: v2
       weight: 35
       
