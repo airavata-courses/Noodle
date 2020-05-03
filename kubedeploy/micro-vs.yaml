@@ -57,11 +57,11 @@ spec:
     - destination:
         host: frontend-service.default.svc.cluster.local
         subset: v1
-      weight: 65
+      weight: 50
     - destination:
         host: frontend-service.default.svc.cluster.local
         subset: v2
-      weight: 35
+      weight: 50
       
       
 ---
